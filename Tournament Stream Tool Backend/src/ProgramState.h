@@ -1,30 +1,30 @@
 #pragma once
 
-#include <cstdint>
+#include <string>
 #include <vector>
 
 struct ProgramState
 {
 	struct
 	{
-		const char* TournamentName = "";
-		const char* EventName = "";
+		std::string TournamentName = "";
+		std::string EventName = "";
 	} TournamentInfo;
 
 	struct
 	{
-		const char* RoundName = "";
+		std::string RoundName = "";
 
 		struct PlayerInfo
 		{
-			const char* Sponsor = "";
-			const char* Tag = "";
+			std::string Sponsor = "";
+			std::string Tag = "";
 		};
 
 		struct TeamInfo
 		{
-			const char* TeamName = "";
-			uint8_t Score = 0;
+			std::string TeamName = "";
+			int Score = 0;
 			bool Losers = false;
 			std::vector<PlayerInfo> Players;
 		};
@@ -35,4 +35,5 @@ struct ProgramState
 };
 
 extern ProgramState State;
+void LoadProgramState();
 void SaveProgramState();

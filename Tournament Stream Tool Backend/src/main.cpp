@@ -1,31 +1,36 @@
 #include "ProgramState.h"
 
+#include <iostream>
+
 int main(int argc, char** argv)
 {
-    State.TournamentInfo.TournamentName = "Tournament Name";
-    State.TournamentInfo.EventName = "Event Name";
+    std::cout << std::boolalpha;
 
-    State.SetInfo.RoundName = "Grands";
+    LoadProgramState();
 
-    State.SetInfo.Teams[0].TeamName = "Team 1";
-    State.SetInfo.Teams[0].Score = 0;
-    State.SetInfo.Teams[0].Losers = false;
-    State.SetInfo.Teams[0].Players.resize(2);
-    State.SetInfo.Teams[0].Players[0].Sponsor = "Team 1";
-    State.SetInfo.Teams[0].Players[0].Tag = "Player 1";
-    State.SetInfo.Teams[0].Players[1].Sponsor = "Team 1";
-    State.SetInfo.Teams[0].Players[1].Tag = "Player 2";
+    std::cout << "Tournament Info:\n";
+    std::cout << "\tTournament Name: " << State.TournamentInfo.TournamentName << "\n";
+    std::cout << "\tEvent Name: " << State.TournamentInfo.EventName << "\n";
+    
+    std::cout << "Set Info:\n";
+    std::cout << "\tRound Name: " << State.SetInfo.RoundName << "\n";
+    std::cout << "\tTeams:\n";
+    
+    for (uint8_t i = 0; i < 2; i++)
+    {
+        std::cout << "\t\tTeam " << i + 1 << ":\n";
+        std::cout << "\t\t\tTeam Name: " << State.SetInfo.Teams[i].TeamName << "\n";
+        std::cout << "\t\t\tScore: " << State.SetInfo.Teams[i].Score << "\n";
+        std::cout << "\t\t\tLosers: " << State.SetInfo.Teams[i].Losers << "\n";
+        std::cout << "\t\t\tPlayers:\n";
 
-    State.SetInfo.Teams[1].TeamName = "Team 2";
-    State.SetInfo.Teams[1].Score = 0;
-    State.SetInfo.Teams[1].Losers = false;
-    State.SetInfo.Teams[1].Players.resize(2);
-    State.SetInfo.Teams[1].Players[0].Sponsor = "Team 2";
-    State.SetInfo.Teams[1].Players[0].Tag = "Player 3";
-    State.SetInfo.Teams[1].Players[1].Sponsor = "Team 2";
-    State.SetInfo.Teams[1].Players[1].Tag = "Player 4";
-
-    SaveProgramState();
+        for (uint32_t j = 0; j < State.SetInfo.Teams[i].Players.size(); j++)
+        {
+            std::cout << "\t\t\t\tPlayer " << j + 1 << ":\n";
+            std::cout << "\t\t\t\t\tSponsor: " << State.SetInfo.Teams[i].Players[j].Sponsor << "\n";
+            std::cout << "\t\t\t\t\tTag: " << State.SetInfo.Teams[i].Players[j].Tag << "\n";
+        }
+    }
 
     return 0;
 }

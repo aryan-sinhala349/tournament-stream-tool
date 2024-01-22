@@ -4,35 +4,35 @@
         "event_name": "Event Name"
     },
     "set_info": {
-        "round_name": "Grands",
+        "round_name": "Round Name",
         "teams": [
             {
-                "team_name": "Team 1",
+                "team_name": "Team 1 Name",
                 "score": 0,
                 "losers": false,
                 "players": [
                     {
-                        "sponsor": "Team 1",
-                        "tag": "Player 1"
+                        "sponsor": "Team 1 Player 1 Sponsor",
+                        "tag": "Team 1 Player 1 Tag"
                     },
                     {
-                        "sponsor": "Team 1",
-                        "tag": "Player 2"
+                        "sponsor": "Team 1 Player 2 Sponsor",
+                        "tag": "Team 1 Player 2 Tag"
                     }
                 ]
             },
             {
-                "team_name": "Team 2",
+                "team_name": "Team 2 Name",
                 "score": 0,
                 "losers": false,
                 "players": [
                     {
-                        "sponsor": "Team 2",
-                        "tag": "Player 3"
+                        "sponsor": "Team 2 Player 1 Sponsor",
+                        "tag": "Team 2 Player 1 Tag"
                     },
                     {
-                        "sponsor": "Team 2",
-                        "tag": "Player 4"
+                        "sponsor": "Team 2 Player 2 Sponsor",
+                        "tag": "Team 2 Player 2 Tag"
                     }
                 ]
             }
