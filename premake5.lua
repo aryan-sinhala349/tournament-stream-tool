@@ -3,7 +3,7 @@ include "./Dependencies.lua"
 
 workspace "Tournament Stream Tool"
     architecture "x86_64"
-    startproject "Tournament Stream Tool Backend"
+    startproject "Tournament Stream Tool Frontend"
 
     configurations
     {
@@ -26,3 +26,5 @@ group ""
 group "Core"
     include "Tournament Stream Tool Backend"
 group ""
+
+include "Tournament Stream Tool Frontend"

@@ -1,5 +1,5 @@
 project "Tournament Stream Tool Backend"
-    kind "ConsoleApp"
+    kind "SharedLib"
     language "C++"
     cppdialect "C++20"
     staticruntime "on"
@@ -42,7 +42,7 @@ project "Tournament Stream Tool Backend"
     filter "configurations:Debug"
         defines
         {
-            "AL_DEBUG"
+            "TST_DEBUG"
         }
 
         runtime "Debug"
@@ -51,14 +51,14 @@ project "Tournament Stream Tool Backend"
     filter "configurations:Release"
         defines
         {
-            "AL_RELEASE"
+            "TST_RELEASE"
         }
 
         runtime "Release"
         optimize "on"
 
     filter "configurations:Dist"
-        defines "AL_DIST"
+        defines "TST_DIST"
         runtime "Release"
         optimize "on"
         symbols "off"

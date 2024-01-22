@@ -13,6 +13,12 @@ void LoadProgramState()
 {
 	//Load the JSON object from disk
 	FILE* fp = fopen("program_state.json", "rb");
+	
+	if (!fp)
+	{
+		std::cerr << "Program state file doesn't exist!\n";
+		return;
+	}
 
 	char readBuffer[0xFFFF + 1];
 	rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
@@ -188,4 +194,64 @@ void SaveProgramState()
 	document.Accept(writer);
 
 	fclose(fp);
+}
+
+const char* ProgramState_GetTournamentName()
+{
+	return State.TournamentInfo.TournamentName.c_str();
+}
+
+void ProgramState_SetTournamentName(const char* tournamentName)
+{
+	State.TournamentInfo.TournamentName = std::string(tournamentName);
+}
+
+const char* ProgramState_GetEventName()
+{
+	return State.TournamentInfo.EventName.c_str();
+}
+
+void ProgramState_SetEventName(const char* eventName)
+{
+	State.TournamentInfo.EventName = std::string(eventName);
+}
+
+const char* ProgramState_GetRoundName()
+{
+	return State.SetInfo.RoundName.c_str();
+}
+
+void ProgramState_SetRoundName(const char* roundName)
+{
+	State.SetInfo.RoundName = roundName;
+}
+
+const char* ProgramState_GetTeamName(int teamID)
+{
+	return State.SetInfo.Teams[teamID].TeamName.c_str();
+}
+
+void ProgramState_SetTeamName(int teamID, const char* teamName)
+{
+	State.SetInfo.Teams[teamID].TeamName = std::string(teamName);
+}
+
+int ProgramState_GetTeamScore(int teamID)
+{
+	return State.SetInfo.Teams[teamID].Score;
+}
+
+void ProgramState_SetTeamScore(int teamID, int score)
+{
+	State.SetInfo.Teams[teamID].Score = score;
+}
+
+bool ProgramState_IsTeamLosers(int teamID)
+{
+	return State.SetInfo.Teams[teamID].Losers;
+}
+
+void ProgramState_SetTeamLosers(int teamID, bool losers)
+{
+	State.SetInfo.Teams[teamID].Losers = losers;
 }
