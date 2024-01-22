@@ -1,4 +1,5 @@
 include "./vendor/premake/customization/target.lua"
+include "./Dependencies.lua"
 
 workspace "Tournament Stream Tool"
     architecture "x86_64"

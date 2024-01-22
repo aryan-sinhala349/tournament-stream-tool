@@ -1,0 +1,3 @@
+[submodule "Tournament Stream Tool Backend/vendor/rapidjson"]
+	path = Tournament Stream Tool Backend/vendor/rapidjson
+	url = https://github.com/Tencent/rapidjson/

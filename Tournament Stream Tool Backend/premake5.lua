@@ -10,7 +10,8 @@ project "Tournament Stream Tool Backend"
     files
     {
         "src/**.h",
-        "src/**.cpp"
+        "src/**.cpp",
+        "vendor/rapidjson/include/**.h"
     }
 
     defines
@@ -20,7 +21,8 @@ project "Tournament Stream Tool Backend"
 
     includedirs
     {
-        "src"
+        "src",
+        "%{IncludeDir.rapidjson}"
     }
 
     links
