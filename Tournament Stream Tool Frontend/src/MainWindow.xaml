@@ -5,8 +5,107 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TST"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Tournament Stream Tool" Height="600" Width="800"
+        MinWidth="800" MinHeight="600"
+        WindowStyle="SingleBorderWindow"
+        ResizeMode="CanResize"
+        Background="#1c1c1e">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid Margin="0, 0, 20, 0"
+              Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label FontWeight="Bold" FontSize="20"
+                   Grid.Row="0" Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center">
+                Bracket Information
+            </Label>
+            <Label Grid.Row="1" Grid.Column="0"
+                   Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Right">
+                Tournament Name:
+            </Label>
+            <TextBox Grid.Row="1" Grid.Column="1"
+                     VerticalAlignment="Center">
+
+            </TextBox>
+            <Label Grid.Row="2" Grid.Column="0"
+                   Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Right">
+                Event Name:
+            </Label>
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     VerticalAlignment="Center">
+
+            </TextBox>
+        </Grid>
+
+        <Grid Margin="20"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition />
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+
+            <Label FontWeight="Bold" FontSize="20"
+                   Grid.Row="0" Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Foreground="White"
+                   VerticalAlignment="Center" HorizontalAlignment="Center">
+                Set Information
+            </Label>
+            <Border BorderBrush="#989899" BorderThickness="2" 
+                    CornerRadius="6"
+                    Grid.Row="1" Grid.Column="0"
+                    Margin="2">
+
+            </Border>
+            <Border BorderBrush="#989899" BorderThickness="2"
+                    CornerRadius="6"
+                    Grid.Row="1" Grid.Column="1"
+                    Margin="2">
+
+            </Border>
+            <Border BorderBrush="#989899" BorderThickness="2"
+                    CornerRadius="6"
+                    Grid.Row="1" Grid.Column="2"
+                    Margin="2">
+
+            </Border>
+            <Button FontWeight="Bold" FontSize="20"
+                    Grid.Row="2" Grid.Column="1"
+                    BorderBrush="#989899" BorderThickness="2"
+                    Background="#5a5a5e"
+                    Foreground="White"
+                    Margin="2">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="6" />
+                    </Style>
+                </Button.Resources>
+                UPDATE
+            </Button>
+        </Grid>
     </Grid>
 </Window>

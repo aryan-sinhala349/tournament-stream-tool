@@ -8,6 +8,9 @@ public static class Program
     [STAThread]
     private static void Main(string[] args)
     {
+        //Load the program state
+        ProgramState.LoadProgramState();
+
         //Create the app
         Application app = new Application();
 
