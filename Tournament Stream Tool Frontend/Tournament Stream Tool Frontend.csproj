@@ -75,8 +75,6 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="src\Core\ObservableObject.cs" />
-    <Compile Include="src\Core\RelayCommand.cs" />
     <Compile Include="src\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
@@ -95,14 +93,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="src\Fonts\" />
-    <Folder Include="src\Images\" />
-    <Folder Include="src\MVVM\Model\" />
-    <Folder Include="src\MVVM\ViewModel\" />
-    <Folder Include="src\MVVM\View\" />
-    <Folder Include="src\Theme\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

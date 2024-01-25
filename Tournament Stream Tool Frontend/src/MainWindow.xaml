@@ -10,7 +10,9 @@
         WindowStyle="SingleBorderWindow"
         ResizeMode="CanResize"
         Background="#1c1c1e">
-    <Grid>
+    <Grid Name="MainGrid"
+          MouseDown="MainGrid_MouseDown"
+          Focusable="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
             <RowDefinition />
@@ -41,8 +43,16 @@
                 Tournament Name:
             </Label>
             <TextBox Grid.Row="1" Grid.Column="1"
-                     VerticalAlignment="Center">
-
+                     BorderBrush="#989899" Background="Transparent" 
+                     Foreground="White" CaretBrush="White"
+                     Margin="0, 2, 0, 2" Padding="8, 0, 8, 0"
+                     Name="TournamentNameTextBox"
+                     VerticalContentAlignment="Center" TextChanged="TournamentNameTextBox_TextChanged">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="6" />
+                    </Style>
+                </TextBox.Resources>
             </TextBox>
             <Label Grid.Row="2" Grid.Column="0"
                    Foreground="White"
@@ -50,8 +60,16 @@
                 Event Name:
             </Label>
             <TextBox Grid.Row="2" Grid.Column="1"
-                     VerticalAlignment="Center">
-
+                     BorderBrush="#989899" Background="Transparent" 
+                     Foreground="White" CaretBrush="White"
+                     Margin="0, 2, 0, 2" Padding="8, 0, 8, 0"
+                     Name="EventNameTextBox"
+                     VerticalContentAlignment="Center" TextChanged="EventNameTextBox_TextChanged">
+                <TextBox.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="6" />
+                    </Style>
+                </TextBox.Resources>
             </TextBox>
         </Grid>
 
@@ -63,9 +81,9 @@
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*" />
                 <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="2*" />
-                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="4*" />
             </Grid.ColumnDefinitions>
 
             <Label FontWeight="Bold" FontSize="20"
@@ -78,8 +96,75 @@
             <Border BorderBrush="#989899" BorderThickness="2" 
                     CornerRadius="6"
                     Grid.Row="1" Grid.Column="0"
-                    Margin="2">
+                    Margin="2"
+                    Padding="4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
+                    <Label FontWeight="Bold" FontSize="18"
+                           Grid.Row="0"
+                           Foreground="White"
+                           VerticalAlignment="Center" HorizontalAlignment="Center">
+                        Team 1
+                    </Label>
+                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Right"
+                              Name="Team1CheckBox" 
+                              Checked="Team1CheckBox_Checked" Unchecked="Team1CheckBox_Unchecked">
+                        <CheckBox.Template>
+                            <ControlTemplate TargetType="CheckBox">
+                                <Grid>
+                                    <Border Width="30" Height="30"
+                                            Background="Transparent" BorderBrush="#989899"
+                                            BorderThickness="1" CornerRadius="6"
+                                            Margin="0, 0, 2.5, 0">
+
+                                        <Grid Name="Team1CheckMark" Visibility="Hidden">
+                                            <Line X1="6"  Y1="6"
+                                                  X2="22" Y2="22"
+                                                  Stroke="#989899" StrokeThickness="2" />
+                                            <Line X1="22" Y1="6"
+                                                  X2="6"  Y2="22"
+                                                  Stroke="#989899" StrokeThickness="2"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter TargetName="Team1CheckMark" Property="Visibility" Value="Visible" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </CheckBox.Template>
+                    </CheckBox>
+                    <Label FontSize="14"
+                           Grid.Row="0"
+                           Foreground="White"
+                           VerticalAlignment="Center" HorizontalAlignment="Right"
+                           Margin="0, 0, 32.5, 0">
+                        Losers
+                    </Label>
+                    <Label Grid.Row="1"
+                           Foreground="White">
+                        Team Name:
+                    </Label>
+                    <TextBox Grid.Row="2"
+                             BorderBrush="#989899" Background="Transparent" 
+                             Foreground="White" CaretBrush="White"
+                             Margin="0, 2, 0, 2" Padding="8, 0, 8, 0"
+                             Name="Team1NameTextBox"
+                             VerticalContentAlignment="Center" TextChanged="Team1NameTextBox_TextChanged">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="6" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </Grid>
             </Border>
             <Border BorderBrush="#989899" BorderThickness="2"
                     CornerRadius="6"
@@ -91,14 +176,81 @@
                     CornerRadius="6"
                     Grid.Row="1" Grid.Column="2"
                     Margin="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="24"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
+                    <Label FontWeight="Bold" FontSize="18"
+                           Grid.Row="0"
+                           Foreground="White"
+                           VerticalAlignment="Center" HorizontalAlignment="Center">
+                        Team 2
+                    </Label>
+                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Right"
+                              Name="Team2CheckBox" 
+                              Checked="Team2CheckBox_Checked" Unchecked="Team2CheckBox_Unchecked">
+                        <CheckBox.Template>
+                            <ControlTemplate TargetType="CheckBox">
+                                <Grid>
+                                    <Border Width="30" Height="30"
+                                            Background="Transparent" BorderBrush="#989899"
+                                            BorderThickness="1" CornerRadius="6"
+                                            Margin="0, 0, 2.5, 0">
+
+                                        <Grid Name="Team2CheckMark" Visibility="Hidden">
+                                            <Line X1="6"  Y1="6"
+                                                  X2="22" Y2="22"
+                                                  Stroke="#989899" StrokeThickness="2" />
+                                            <Line X1="22" Y1="6"
+                                                  X2="6"  Y2="22"
+                                                  Stroke="#989899" StrokeThickness="2"/>
+                                        </Grid>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter TargetName="Team2CheckMark" Property="Visibility" Value="Visible" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </CheckBox.Template>
+                    </CheckBox>
+                    <Label FontSize="14"
+                           Grid.Row="0"
+                           Foreground="White"
+                           VerticalAlignment="Center" HorizontalAlignment="Right"
+                           Margin="0, 0, 32.5, 0">
+                        Losers
+                    </Label>
+                    <Label Grid.Row="1"
+                           Foreground="White">
+                        Team Name:
+                    </Label>
+                    <TextBox Grid.Row="2"
+                             BorderBrush="#989899" Background="Transparent" 
+                             Foreground="White" CaretBrush="White"
+                             Margin="0, 2, 0, 2" Padding="8, 0, 8, 0"
+                             Name="Team2NameTextBox"
+                             VerticalContentAlignment="Center" TextChanged="Team2NameTextBox_TextChanged">
+                        <TextBox.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="CornerRadius" Value="6" />
+                            </Style>
+                        </TextBox.Resources>
+                    </TextBox>
+                </Grid>
             </Border>
             <Button FontWeight="Bold" FontSize="20"
                     Grid.Row="2" Grid.Column="1"
                     BorderBrush="#989899" BorderThickness="2"
                     Background="#5a5a5e"
                     Foreground="White"
-                    Margin="2">
+                    Margin="2"
+                    Name="UpdateButton" Click="UpdateButton_Click">
                 <Button.Resources>
                     <Style TargetType="{x:Type Border}">
                         <Setter Property="CornerRadius" Value="6" />
