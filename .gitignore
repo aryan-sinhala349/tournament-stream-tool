@@ -3,6 +3,7 @@
 *.vcxproj
 *.vcxproj.user
 *.vcxproj.filters
+*.csproj
 *.csproj.user
 *.csproj.filters
 *.sln

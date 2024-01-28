@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -7,6 +8,8 @@ namespace TST
 {
     public partial class MainWindow : Window
     {
+        private static readonly Regex s_NumberRegex = new Regex("[^0-9]+");
+
         public MainWindow()
         {
             InitializeComponent();
@@ -23,6 +26,11 @@ namespace TST
             //Team 2
             Team2CheckBox.IsChecked = ProgramState.IsTeamLosers(1);
             Team2NameTextBox.Text = ProgramState.GetTeamName(1);
+
+            //General Set Information
+            RoundNameTextBox.Text = ProgramState.GetRoundName();
+            Team1ScoreTextBox.Text = ProgramState.GetTeamScore(0).ToString();
+            Team2ScoreTextBox.Text = ProgramState.GetTeamScore(1).ToString();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
@@ -73,6 +81,112 @@ namespace TST
         private void Team2NameTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             ProgramState.SetTeamName(1, Team2NameTextBox.Text);
+        }
+
+        private void RoundNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ProgramState.SetRoundName(RoundNameTextBox.Text);
+        }
+
+        private void Score_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            try
+            {
+                int.Parse(e.Text);
+            }
+            catch (FormatException)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            TextBox textBox = (TextBox)sender;
+            int score = int.Parse(textBox.Text + e.Text);
+
+            if (score < 0 || score > 99)
+                e.Handled = true;
+        }
+
+        private void Score_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            if (!e.DataObject.GetDataPresent(typeof(string)))
+            {
+                e.CancelCommand();
+                return;
+            }
+
+            string text = (string)e.DataObject.GetData(typeof(string));
+
+            try
+            {
+                int.Parse(text);
+            }
+            catch (FormatException)
+            {
+                e.CancelCommand();
+                return;
+            }
+
+            TextBox textBox = (TextBox)sender;
+            int score = int.Parse(textBox.Text + text);
+
+            if (score < 0)
+            {
+                e.CancelCommand();
+                return;
+            }
+
+            if (score > 99)
+            {
+                string convertedScore = textBox.Text + text;
+                string clampedScore = convertedScore.Substring(0, 2);
+                textBox.Text = clampedScore;
+                e.CancelCommand();
+            }
+        }
+
+        private void Team1ScoreTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string text = Team1ScoreTextBox.Text;
+
+            try
+            {
+                int.Parse(text);
+            }
+            catch (FormatException)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            int score = int.Parse(text);
+
+            if (score < 0 || score > 99)
+                return;
+
+            ProgramState.SetTeamScore(0, score);
+        }
+
+        private void Team2ScoreTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string text = Team2ScoreTextBox.Text;
+
+            try
+            {
+                int.Parse(text);
+            }
+            catch (FormatException)
+            {
+                e.Handled = true;
+                return;
+            }
+
+            int score = int.Parse(text);
+
+            if (score < 0 || score > 99)
+                return;
+
+            ProgramState.SetTeamScore(1, score);
         }
     }
 }
